@@ -10,14 +10,30 @@ function computerPlay(choices) {
 }
 
 function playRound(playerOneSelection, playerTwoSelection) {
+  if (
+    !checkPlayerSelection(playerOneSelection) ||
+    !checkPlayerSelection(playerTwoSelection)
+  ) {
+    throw new Error(
+      `Invalid player selection.\nPlayer one: ${JSON.stringify(
+        playerOneSelection
+      )}\nPlayer two: ${JSON.stringify(playerTwoSelection)} `
+    );
+  }
   // rock > scissors - paper > rock - scissors > paper
   if (playerOneSelection === playerTwoSelection) {
     return 0;
-  } else if (playerOneSelection === "rock" && playerTwoSelection === "scissors") {
+  } else if (
+    playerOneSelection === "rock" &&
+    playerTwoSelection === "scissors"
+  ) {
     return 1;
   } else if (playerOneSelection === "paper" && playerTwoSelection === "rock") {
     return 1;
-  } else if (playerOneSelection === "scissors" && playerTwoSelection === "paper") {
+  } else if (
+    playerOneSelection === "scissors" &&
+    playerTwoSelection === "paper"
+  ) {
     return 1;
   } else {
     return 2;
@@ -35,7 +51,7 @@ function game(rounds = 5) {
   };
 
   for (let i = 0; i < rounds; i++) {
-    const playerSelection = computerPlay(["rock", "paper", "scissors"]);
+    const playerSelection = prompt("Welcome to Rock - Paper - Scissors! Please enter your choice:")
     const computerSelection = computerPlay(["rock", "paper", "scissors"]);
 
     const round = playRound(playerSelection, computerSelection);
@@ -70,3 +86,10 @@ console.log(
 console.log("player one", playerOne);
 console.log("player two", playerTwo);
 console.log("ties", ties);
+
+function checkPlayerSelection(
+  selection,
+  values = ["rock", "paper", "scissors"]
+) {
+  return values.includes(selection);
+}
