@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rock - Paper - Scissors</title>
-</head>
-<body>
-  <script src="index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock - Paper - Scissors</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="game-header">
+      <h1 class="game-title">Rock - Paper - Scissors</h1>
+    </header>
+    <div class="game-container">
+      <div class="versus-container">
+        <span class="human">🐵</span>
+        <div class="versus">VS.</div>
+        <span class="computer">🤖</span>
+      </div>
+      <div class="options-container">
+        <button id="btn-start" type="button">START</button>
+      </div>
+      <div class="scoreboard-container hidden">
+        <p>HUMAN: <span class="human-score">0</span></p>
+        <p>ROUNDS: <span class="rounds">5</span></p>
+        <p>COMPUTER: <span class="robot-score">0</span></p>
+      </div>
+      <div class="controls-container hidden">
+        <button id="btn-rock" name="rock" data-value="rock" type="button">
+          <span role="img" aria-labelledby="rock"> ✊ </span>
+        </button>
+        <button id="btn-paper" name="paper" data-value="paper" type="button">
+          <span role="img" aria-label="paper">🖐</span>
+        </button>
+        <button
+          id="btn-scissors"
+          name="scissors"
+          data-value="scissors"
+          type="button"
+        >
+          <span role="img" aria-label="scissors">✌️</span>
+        </button>
+        <button id="btn-play-again" class="hidden" type="button">
+          PLAY AGAIN
+        </button>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>

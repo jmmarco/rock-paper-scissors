@@ -1,4 +1,4 @@
-function computerPlay(choices) {
+function computerPlay(choices = ["rock", "paper", "scissors"]) {
   if (Array.isArray(choices) && choices.length > 0) {
     return choices[Math.floor(Math.random() * choices.length)];
   }
@@ -40,56 +40,128 @@ function playRound(playerOneSelection, playerTwoSelection) {
   }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay(["rock", "paper", "scissors"]);
+function init() {
+  scoreBoard = resetScoreBoard();
+  appendScoreboardResults(scoreBoard);
+  window.addEventListener("click", start);
+  const btnRock = document.getElementById('btn-rock');
+  const btnPaper = document.getElementById('btn-paper');
+  const btnScissors = document.getElementById('btn-scissors');
 
-function game(rounds = 5) {
-  let scoreBoard = {
-    playerOne: 0,
-    playerTwo: 0,
-    ties: 0,
-  };
-
-  for (let i = 0; i < rounds; i++) {
-    const playerSelection = prompt("Welcome to Rock - Paper - Scissors! Please enter your choice:")
-    const computerSelection = computerPlay(["rock", "paper", "scissors"]);
-
-    const round = playRound(playerSelection, computerSelection);
-    switch (round) {
-      case 1:
-        scoreBoard.playerOne++;
-        break;
-      case 2:
-        scoreBoard.playerTwo++;
-        break;
-      case 0:
-        scoreBoard.ties++;
-        break;
-      default:
-        break;
-    }
-  }
-
-  return scoreBoard;
+  [btnRock, btnPaper, btnScissors].forEach((el) => {
+    el.classList.contains("hidden") && el.classList.toggle("hidden")
+  })
 }
-
-const { playerOne, playerTwo, ties } = game();
-
-console.log(
-  playerOne === playerTwo
-    ? "Tie game"
-    : playerOne > playerTwo
-    ? "Player one wins!"
-    : "Player two wins!"
-);
-
-console.log("player one", playerOne);
-console.log("player two", playerTwo);
-console.log("ties", ties);
 
 function checkPlayerSelection(
   selection,
   values = ["rock", "paper", "scissors"]
 ) {
   return values.includes(selection);
+}
+
+function start(e) {
+  console.log("fired");
+  console.log(e.target.id);
+
+  if (e.target.id === "btn-start") {
+    const optionsContainer = document.querySelector(".options-container");
+    optionsContainer.classList.toggle("hidden");
+    const controlsContainer = document.querySelector(".controls-container");
+    if (controlsContainer) controlsContainer.classList.toggle("hidden");
+    const scoreBoardContainer = document.querySelector(".scoreboard-container");
+    scoreBoardContainer.classList.toggle("hidden");
+  }
+
+  const value = e.target.dataset.value || e.target.parentElement.dataset.value;
+  if (!value) return;
+  const humanChoice = value;
+  const computerChoice = computerPlay();
+  const winner = playRound(humanChoice, computerChoice);
+
+  if (winner === 1) {
+    appendResults(humanChoice, computerChoice);
+    scoreBoard.humanPlayer++;
+  }
+  if (winner === 2) {
+    appendResults(humanChoice, computerChoice);
+    scoreBoard.computerPlayer++;
+  }
+  if (winner === 0) {
+    scoreBoard.ties++;
+    appendResults(humanChoice, computerChoice);
+  }
+  scoreBoard.rounds--;
+  if (scoreBoard.rounds === 0) {
+    window.removeEventListener("click", start);
+    const playAgainButton = document.getElementById("btn-play-again");
+    // const controlsContainer = document.querySelector(".controls-container");
+    const btnRock = document.getElementById("btn-rock");
+    const btnPaper = document.getElementById("btn-paper");
+    const btnScissors = document.getElementById("btn-scissors");
+
+    [btnRock, btnPaper, btnScissors].forEach((el) => {
+      el.classList.toggle("hidden");
+    });
+    playAgainButton.classList.toggle("hidden")
+    playAgainButton.addEventListener('click', () => init())
+  }
+
+  console.log(scoreBoard);
+  appendScoreboardResults(scoreBoard);
+}
+
+let scoreBoard = {
+  humanPlayer: 0,
+  computerPlayer: 0,
+  ties: 0,
+  rounds: 5,
+};
+
+init();
+
+function mapTextToEmoji(textStr) {
+  if (typeof textStr !== "string") return;
+  switch (textStr.toLowerCase()) {
+    case "rock":
+      return "✊";
+    case "paper":
+      return "🖐";
+    case "scissors":
+      return "✌️";
+    default:
+      return;
+  }
+}
+
+function appendResults(humanChoice, computerChoice) {
+  const versus = document.querySelector(".versus");
+  const leftChoice = document.createElement("span");
+  const rightChoice = document.createElement("span");
+  leftChoice.textContent = mapTextToEmoji(humanChoice);
+  leftChoice.classList.add("left-choice-emoji");
+  rightChoice.textContent = mapTextToEmoji(computerChoice);
+  rightChoice.classList.add("right-choice-emoji");
+  versus.textContent = "";
+  versus.append(leftChoice, rightChoice);
+}
+
+function appendScoreboardResults(scoreboard) {
+  const { humanPlayer, computerPlayer, rounds } = scoreBoard;
+  const scoreBoardContainer = document.querySelector(".scoreboard-container");
+  const [humanScore, roundsRemaining, robotScore] =
+    scoreBoardContainer.querySelectorAll("span");
+  if (!humanScore && !robotScore && !roundsRemaining) return;
+  roundsRemaining.textContent = rounds;
+  humanScore.textContent = humanPlayer;
+  robotScore.textContent = computerPlayer;
+}
+
+function resetScoreBoard(scoreBoard) {
+  return {
+    humanPlayer: 0,
+    computerPlayer: 0,
+    ties: 0,
+    rounds: 5,
+  };
 }
