@@ -18,15 +18,15 @@
         <div class="versus">VS.</div>
         <span class="computer">🤖</span>
       </div>
-      <div class="options-container">
+      <div class="options-container hidden">
         <button id="btn-start" type="button">START</button>
       </div>
-      <div class="scoreboard-container hidden">
+      <div class="scoreboard-container">
         <p>HUMAN: <span class="human-score">0</span></p>
         <p>ROUNDS: <span class="rounds">5</span></p>
         <p>COMPUTER: <span class="robot-score">0</span></p>
       </div>
-      <div class="controls-container hidden">
+      <div class="controls-container">
         <button id="btn-rock" name="rock" data-value="rock" type="button">
           <span role="img" aria-labelledby="rock"> ✊ </span>
         </button>
@@ -46,6 +46,6 @@
         </button>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script type="module" src="main.mjs"></script>
   </body>
 </html>
