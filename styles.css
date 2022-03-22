@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Shojumaru&display=swap");
+
+body {
+  font-family: "Shojumaru", cursive;
+}
+
+.game-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.game-container {
+  margin: 0 auto;
+}
+
+.versus-container {
+  display: flex;
+  width: 60rem;
+  margin: 0 auto;
+  font-size: 6rem;
+  justify-content: space-around;
+  padding: 6rem 6rem 3rem 6rem;
+}
+
+.scoreboard-container {
+  display: flex;
+  width: 800px;
+  margin: 0 auto;
+  justify-content: space-between;
+  font-size: 4rem;
+  padding: 0 6rem;
+}
+
+.controls-container {
+  display: flex;
+  padding: 3rem 6rem;
+  width: 60rem;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+#btn-rock,
+#btn-paper,
+#btn-scissors {
+  all: unset;
+  font-size: 6rem;
+  margin: 0 1.5rem;
+  border: 2px solid transparent;
+  /* background-color: #e2e8f0; */
+  background-color: #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  padding: 2rem;
+  transition: all .14s ease-out;
+}
+
+#btn-rock:focus,
+#btn-paper:focus,
+#btn-scissors:focus {
+  /* border: 2px solid #67e8f9; */
+  /* box-shadow: 0.025rem ; */
+  /* box-shadow: inset 0 0 10px #000000; */
+  box-shadow: 0.25rem 0.25rem 0 #334155;
+  
+}
+
+#btn-rock:hover,
+#btn-paper:hover,
+#btn-scissors:hover {
+  box-shadow: 0.25rem 0.25rem 0 #334155;
+  transform: translate(-.25rem,-.25rem);
+}
+
+#btn-rock:active,
+#btn-paper:active,
+#btn-scissors:active {
+  box-shadow: unset;
+  transform: unset;
+}
+
+#btn-rock > span,
+#btn-paper > span,
+#btn-scissors > span {
+  display: block;
+  transform: scaleX(-1) rotate(240deg);
+  pointer-events: none; /* disable pointer events for <span> elements */
+}
+
+#btn-play-again, #btn-start {
+  padding: 2rem 4rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+}
+
+
+#btn-play-again {
+  display: block;
+  margin: 0 auto;
+}
+
+
+.left-choice-emoji {
+  transform: scaleX(-1) rotate(240deg);
+  margin-right: 2rem;
+}
+
+.right-choice-emoji {
+  margin-left: 2rem;
+  transform: scaleY(1) rotate(240deg);
+}
+
+.versus {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.options-container {
+  display: flex;
+  justify-content: center;
+}
+
+.scoreboard-container p {
+  font-size: 1.5rem;
+}
