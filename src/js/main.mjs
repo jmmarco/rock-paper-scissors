@@ -1,5 +1,5 @@
-import { updateMoves, updateScoreboardResults } from "./dom-utils.mjs";
-import { computerPlay, playRound } from "./utils.mjs";
+import { updateMoves, updateScoreboardResults } from './utils/dom-utils.mjs';
+import { computerPlay, playRound } from './utils/utils.mjs';
 
 const gameState = {
   humanPlayer: 0,
@@ -10,7 +10,7 @@ const gameState = {
 
 const gameModule = {
   load() {
-    window.addEventListener("click", gameModule.start);
+    window.addEventListener('click', gameModule.start);
   },
   start(e) {
     const { value } = e.target.dataset;
@@ -31,7 +31,7 @@ const gameModule = {
     gameState.rounds--;
 
     if (gameState.rounds === 0) {
-      window.removeEventListener("click", gameModule.start);
+      window.removeEventListener('click', gameModule.start);
     }
     updateScoreboardResults(gameState);
     updateMoves(humanChoice, computerChoice);

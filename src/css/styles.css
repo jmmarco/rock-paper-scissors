@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Shojumaru&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Shojumaru&display=swap');
 
 body {
-  font-family: "Shojumaru", cursive;
+  font-family: 'Shojumaru', cursive;
 }
 
 .game-title {
@@ -55,7 +55,7 @@ body {
   width: 80px;
   height: 80px;
   padding: 2rem;
-  transition: all .14s ease-out;
+  transition: all 0.14s ease-out;
 }
 
 #btn-rock:focus,
@@ -65,14 +65,13 @@ body {
   /* box-shadow: 0.025rem ; */
   /* box-shadow: inset 0 0 10px #000000; */
   box-shadow: 0.25rem 0.25rem 0 #334155;
-  
 }
 
 #btn-rock:hover,
 #btn-paper:hover,
 #btn-scissors:hover {
   box-shadow: 0.25rem 0.25rem 0 #334155;
-  transform: translate(-.25rem,-.25rem);
+  transform: translate(-0.25rem, -0.25rem);
 }
 
 #btn-rock:active,
@@ -90,18 +89,17 @@ body {
   pointer-events: none; /* disable pointer events for <span> elements */
 }
 
-#btn-play-again, #btn-start {
+#btn-play-again,
+#btn-start {
   padding: 2rem 4rem;
   font-size: 2rem;
   border-radius: 0.5rem;
 }
 
-
 #btn-play-again {
   display: block;
   margin: 0 auto;
 }
-
 
 .left-choice-emoji {
   transform: scaleX(-1) rotate(240deg);

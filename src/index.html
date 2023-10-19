@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock - Paper - Scissors</title>
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <header class="game-header">
       <h1 class="game-title">Rock - Paper - Scissors</h1>
     </header>
-    <div class="game-container">
+    <main class="game-container">
       <div class="versus-container">
         <span class="human">🐵</span>
         <div class="versus">VS.</div>
@@ -45,7 +45,11 @@
           PLAY AGAIN
         </button>
       </div>
-    </div>
-    <script type="module" src="main.mjs"></script>
+    </main>
+    <dialog id="game-outcome">
+      <button autofocus>Close</button>
+      <p>Somebody won!</p>
+    </dialog>
+    <script type="module" src="./js/main.mjs"></script>
   </body>
 </html>
